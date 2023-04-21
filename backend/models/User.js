@@ -4,7 +4,15 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 // Clinic schema
 const UserSchema = new mongoose.Schema({
-  description: {
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
     type: String,
     required: true,
   },
