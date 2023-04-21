@@ -40,7 +40,7 @@ export default function LoginScreen() {
         <View style={styles.inputContainer}>
           <View style={styles.inputBox}>
             <View style={styles.profilePictureContainer}>
-              <FontAwesome firstName="user-circle-o" size={100} color="#ccc" />
+              <FontAwesome name="user-circle-o" size={100} color="#ccc" />
             </View>
             <TextInput
               style={styles.input}
