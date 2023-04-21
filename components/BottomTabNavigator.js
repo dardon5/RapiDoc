@@ -58,7 +58,6 @@ import SearchScreen from "../screens/SearchScreen.js";
 import WellnessScreen from "../screens/WellnessScreen.js";
 import SymptomsScreen from "../screens/SymptomsScreen.js";
 import AppointmentsScreen from "../screens/AppointmentsScreen.js";
-import AccountScreen from "../screens/AccountScreen.js";
 
 const Tab = createBottomTabNavigator();
 
@@ -98,7 +97,6 @@ const BottomTabNavigator = () => {
       <Tab.Screen name="Wellness" component={WellnessScreen} />
       <Tab.Screen name="Symptoms" component={SymptomsScreen} />
       <Tab.Screen name="Appointments" component={AppointmentsScreen} />
-      <Tab.Screen name="Account" component={AccountScreen} />
     </Tab.Navigator>
   );
 };
