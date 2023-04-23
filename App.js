@@ -4,7 +4,11 @@ import BottomTabNavigator from "./components/BottomTabNavigator.js";
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <BottomTabNavigator />
     </NavigationContainer>
   );

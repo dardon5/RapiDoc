@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const UserSchema = new mongoose.Schema(
+const DoctorSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
@@ -17,26 +17,38 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    password: {
+    specialties: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+    insurance: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+    availability: {
       type: String,
       required: true,
     },
-    doctor: {
-      type: ObjectId,
-      ref: "Doctor",
-      default: null,
-      required: false,
+    location: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
     },
     appointments: [
       {
         type: ObjectId,
         ref: "Appointment",
-        default: [],
-        required: false,
       },
     ],
   },
   { timestamps: true }
 );
 
-export default mongoose.model("User", UserSchema);
+export default mongoose.model("Doctor", DoctorSchema);

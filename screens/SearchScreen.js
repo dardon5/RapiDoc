@@ -3,7 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
-  TextInput,
+  ScrollView,
   TouchableOpacity,
 } from "react-native";
 
@@ -69,98 +69,108 @@ const SearchScreen = () => {
   ];
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.heading}>
-        Find the best medical professional for you today!
-      </Text>
+    <ScrollView showsVerticalScrollIndicator={true}>
+      <View style={styles.container}>
+        <Text style={styles.heading}>
+          Find the best medical professional for you today!
+        </Text>
 
-      <View style={styles.inputContainer}>
-        {/* Specialty input */}
-        <View style={styles.inputBox}>
-          <Text style={styles.inputLabel}>Specialty</Text>
-          <TouchableOpacity onPress={toggleSpecialtiesPicker}>
-            <Text style={styles.input}>
-              {specialty ? specialty : "Select Specialty"}
-            </Text>
-          </TouchableOpacity>
-          {showSpecialtiesPicker && (
-            <Picker
-              selectedValue={specialty}
-              onValueChange={handleSpecialtyChange}
-            >
-              <Picker.Item label="Select Specialty" value="" />
-              {specialtyOptions.map((specialty, index) => (
-                <Picker.Item key={index} label={specialty} value={specialty} />
-              ))}
-            </Picker>
-          )}
-        </View>
+        <View style={styles.inputContainer}>
+          {/* Specialty input */}
+          <View style={styles.inputBox}>
+            <Text style={styles.inputLabel}>Specialty</Text>
+            <TouchableOpacity onPress={toggleSpecialtiesPicker}>
+              <Text style={styles.input}>
+                {specialty ? specialty : "Select Specialty"}
+              </Text>
+            </TouchableOpacity>
+            {showSpecialtiesPicker && (
+              <Picker
+                selectedValue={specialty}
+                onValueChange={handleSpecialtyChange}
+              >
+                <Picker.Item label="Select Specialty" value="" />
+                {specialtyOptions.map((specialty, index) => (
+                  <Picker.Item
+                    key={index}
+                    label={specialty}
+                    value={specialty}
+                  />
+                ))}
+              </Picker>
+            )}
+          </View>
 
-        {/* Price input */}
-        <View style={styles.inputBox}>
-          <Text style={styles.inputLabel}>Price</Text>
-          <TouchableOpacity onPress={togglePricePicker}>
-            <Text style={styles.input}>{price ? price : "Select Price"}</Text>
-          </TouchableOpacity>
-          {showPricePicker && (
-            <Picker selectedValue={price} onValueChange={handlePriceChange}>
-              <Picker.Item label="Select Price" value="" />
-              {priceOptions.map((price, index) => (
-                <Picker.Item key={index} label={price} value={price} />
-              ))}
-            </Picker>
-          )}
-        </View>
+          {/* Price input */}
+          <View style={styles.inputBox}>
+            <Text style={styles.inputLabel}>Price</Text>
+            <TouchableOpacity onPress={togglePricePicker}>
+              <Text style={styles.input}>{price ? price : "Select Price"}</Text>
+            </TouchableOpacity>
+            {showPricePicker && (
+              <Picker selectedValue={price} onValueChange={handlePriceChange}>
+                <Picker.Item label="Select Price" value="" />
+                {priceOptions.map((price, index) => (
+                  <Picker.Item key={index} label={price} value={price} />
+                ))}
+              </Picker>
+            )}
+          </View>
 
-        {/* Insurance input */}
-        <View style={styles.inputBox}>
-          <Text style={styles.inputLabel}>Insurance</Text>
-          <TouchableOpacity onPress={toggleInsurancePicker}>
-            <Text style={styles.input}>
-              {insurance ? insurance : "Select Insurance"}
-            </Text>
-          </TouchableOpacity>
-          {showInsurancePicker && (
-            <Picker
-              selectedValue={insurance}
-              onValueChange={handleInsuranceChange}
-            >
-              <Picker.Item label="Select Insurance" value="" />
-              {insuranceOptions.map((insurance, index) => (
-                <Picker.Item key={index} label={insurance} value={insurance} />
-              ))}
-            </Picker>
-          )}
-        </View>
+          {/* Insurance input */}
+          <View style={styles.inputBox}>
+            <Text style={styles.inputLabel}>Insurance</Text>
+            <TouchableOpacity onPress={toggleInsurancePicker}>
+              <Text style={styles.input}>
+                {insurance ? insurance : "Select Insurance"}
+              </Text>
+            </TouchableOpacity>
+            {showInsurancePicker && (
+              <Picker
+                selectedValue={insurance}
+                onValueChange={handleInsuranceChange}
+              >
+                <Picker.Item label="Select Insurance" value="" />
+                {insuranceOptions.map((insurance, index) => (
+                  <Picker.Item
+                    key={index}
+                    label={insurance}
+                    value={insurance}
+                  />
+                ))}
+              </Picker>
+            )}
+          </View>
 
-        {/* Location input */}
-        <View style={styles.inputBox}>
-          <Text style={styles.inputLabel}>Location</Text>
-          <TouchableOpacity onPress={toggleLocationPicker}>
-            <Text style={styles.input}>
-              {location ? location : "Select Location"}
-            </Text>
-          </TouchableOpacity>
-          {showLocationPicker && (
-            <Picker
-              selectedValue={location}
-              onValueChange={handleLocationChange}
-            >
-              <Picker.Item label="Select Location" value="" />
-              {locationOptions.map((location, index) => (
-                <Picker.Item key={index} label={location} value={location} />
-              ))}
-            </Picker>
-          )}
-        </View>
+          {/* Location input */}
+          <View style={styles.inputBox}>
+            <Text style={styles.inputLabel}>Location</Text>
+            <TouchableOpacity onPress={toggleLocationPicker}>
+              <Text style={styles.input}>
+                {location ? location : "Select Location"}
+              </Text>
+            </TouchableOpacity>
+            {showLocationPicker && (
+              <Picker
+                selectedValue={location}
+                onValueChange={handleLocationChange}
+              >
+                <Picker.Item label="Select Location" value="" />
+                {locationOptions.map((location, index) => (
+                  <Picker.Item key={index} label={location} value={location} />
+                ))}
+              </Picker>
+            )}
+          </View>
 
-        <View style={styles.searchContainer}>
-          <TouchableOpacity style={styles.searchButton}>
-            <Text style={styles.searchButtonText}>Search</Text>
-          </TouchableOpacity>
+          <View style={styles.searchContainer}>
+            <TouchableOpacity style={styles.searchButton}>
+              <Text style={styles.searchButtonText}>Search</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

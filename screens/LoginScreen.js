@@ -32,7 +32,7 @@ export default function LoginScreen() {
       );
       const data = await response.json();
       if (response.ok) {
-        navigation.navigate("SearchScreen");
+        navigation.navigate("HomeScreen");
         console.log("Login successful!");
         // Handle successful login, such as navigating to a different screen
       } else {
@@ -145,7 +145,7 @@ export default function LoginScreen() {
           <TextInput
             style={styles.input}
             placeholder="Password"
-            // secureTextEntry={true}
+            secureTextEntry={true}
             value={password}
             onChangeText={setPassword}
             autoCapitalize="none"
