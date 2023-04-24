@@ -1,5 +1,16 @@
 # RapiDoc
 
+## Description
+
+This application was developed using React native, Express js, Node js, and Mongo DB. The goal of the application is to provide users with the ability to search for medical professionals based on their preferences and needs. The application allows the user to:
+  - Search for medical professionals based on their specialty, price, insurance availibility, and location.
+  - Book appointments with these doctors.
+  - See current and past appointments.
+  - Determine which specialty would be recommended based on their symptoms.
+  - Check to see their overall health standing. 
+
+
+
 ## Installation
 
 1. Download the code from this repository and extract the files.
