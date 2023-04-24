@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 import { Picker } from "@react-native-picker/picker";
+import { useNavigation } from "@react-navigation/native";
 
 const SearchScreen = () => {
   const [specialty, setSpecialty] = useState("");
@@ -18,6 +19,9 @@ const SearchScreen = () => {
   const [showInsurancePicker, setShowInsurancePicker] = useState(false);
   const [location, setLocation] = useState("");
   const [showLocationPicker, setShowLocationPicker] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const navigation = useNavigation();
 
   const togglePricePicker = () => {
     setShowPricePicker(!showPricePicker);
@@ -32,21 +36,48 @@ const SearchScreen = () => {
     setShowLocationPicker(!showLocationPicker);
   };
 
-  const handlePriceChange = (itemValue, itemIndex) => {
+  const handlePriceChange = (itemValue) => {
     setPrice(itemValue);
     setShowPricePicker(false);
   };
-  const handleSpecialtyChange = (itemValue, itemIndex) => {
+  const handleSpecialtyChange = (itemValue) => {
     setSpecialty(itemValue);
     setShowSpecialtiesPicker(false);
   };
-  const handleInsuranceChange = (itemValue, itemIndex) => {
+  const handleInsuranceChange = (itemValue) => {
     setInsurance(itemValue);
     setShowInsurancePicker(false);
   };
-  const handleLocationChange = (itemValue, itemIndex) => {
+  const handleLocationChange = (itemValue) => {
     setLocation(itemValue);
     setShowLocationPicker(false);
+  };
+
+  const searchDoctors = async (specialty, price, insurance, location) => {
+    try {
+      const response = await fetch(
+        `http://localhost:9000/api/doctor?specialty=${specialty}&price=${price}&insurance=${insurance}&location=${location}`
+      );
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Search successful!");
+        navigation.navigate("SearchResults", { doctors: data });
+      } else {
+        console.log(`Search failed: ${data.message}`);
+      }
+    } catch (error) {
+      console.error(`Search error: ${error}`);
+    }
+  };
+
+  const handleSearch = () => {
+    if (!specialty || !price || !insurance || !location) {
+      setErrorMessage("Please select a valid option for each field.");
+    } else {
+      console.log("Good");
+      setErrorMessage(null);
+      searchDoctors(specialty, price, insurance, location);
+    }
   };
 
   const specialtyOptions = [
@@ -57,7 +88,7 @@ const SearchScreen = () => {
     "Gastroenterology",
   ];
 
-  const priceOptions = ["$20", "$25", "$30", "$35", "$40", "$45", "$50"];
+  const priceOptions = ["20", "25", "30", "35", "40", "45", "50"];
 
   const insuranceOptions = ["Asesuisa", "MAPFRE", "AIG", "None"];
 
@@ -103,7 +134,7 @@ const SearchScreen = () => {
 
           {/* Price input */}
           <View style={styles.inputBox}>
-            <Text style={styles.inputLabel}>Price</Text>
+            <Text style={styles.inputLabel}>Price ($)</Text>
             <TouchableOpacity onPress={togglePricePicker}>
               <Text style={styles.input}>{price ? price : "Select Price"}</Text>
             </TouchableOpacity>
@@ -164,10 +195,21 @@ const SearchScreen = () => {
           </View>
 
           <View style={styles.searchContainer}>
-            <TouchableOpacity style={styles.searchButton}>
+            <TouchableOpacity
+              style={styles.searchButton}
+              onPress={() => {
+                handleSearch();
+              }}
+            >
               <Text style={styles.searchButtonText}>Search</Text>
             </TouchableOpacity>
           </View>
+
+          {errorMessage ? (
+            <View style={styles.errorMessageContainer}>
+              <Text style={styles.errorMessage}>{errorMessage}</Text>
+            </View>
+          ) : null}
         </View>
       </View>
     </ScrollView>
@@ -236,5 +278,14 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  errorMessageContainer: {
+    alignItems: "center",
+    paddingTop: 20,
+    paddingBottom: 20,
+  },
+  errorMessage: {
+    color: "red",
+    fontSize: 12,
   },
 });
