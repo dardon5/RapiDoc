@@ -1,20 +1,24 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
-
-import { useNavigation } from "@react-navigation/native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useRoute, useNavigation } from "@react-navigation/native";
 
 const ConfirmationScreen = () => {
   const navigation = useNavigation();
+  const { params } = useRoute();
+  const data = params;
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>You're appointment is confirmed!</Text>
+      <TouchableOpacity
+        style={styles.buttonContainer}
+        onPress={() => {
+          navigation.navigate("HomeScreen");
+        }}
+      >
+        <Text style={styles.buttonText}>Back</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -34,60 +38,20 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 20,
   },
-  inputContainer: {
-    width: "90%",
-    marginBottom: 50,
-    backgroundColor: "#FBF9F9",
-    borderRadius: 10,
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    shadowOffset: { width: 2, height: 6 },
-  },
-  inputBox: {
-    marginBottom: 10,
-    padding: 20,
-    width: "100%",
-  },
-  inputLabel: {
-    fontSize: 18,
-    marginBottom: 10,
-    fontWeight: "bold",
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 5,
-    padding: 10,
-    fontSize: 16,
-  },
-  searchContainer: {
-    alignItems: "center",
-    paddingTop: 30,
-    paddingBottom: 30,
-  },
-  searchButton: {
+  buttonContianer: {
+    borderRadius: 12,
     backgroundColor: "#FFDDDD",
-    padding: 12,
-    borderRadius: 10,
-    width: "90%",
+    marginTop: 20,
     alignItems: "center",
     shadowOpacity: 0.3,
     shadowRadius: 3,
     shadowOffset: { width: 2, height: 6 },
   },
-  searchButtonText: {
-    color: "black",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  errorMessageContainer: {
-    alignItems: "center",
+  buttonText: {
     paddingTop: 20,
     paddingBottom: 20,
-  },
-  errorMessage: {
-    color: "red",
-    fontSize: 12,
+    fontWeight: "bold",
+    fontSize: 17,
   },
 });
 

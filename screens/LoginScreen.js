@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -34,6 +35,7 @@ export default function LoginScreen() {
       if (response.ok) {
         navigation.navigate("HomeScreen");
         console.log("Login successful!");
+
         // Handle successful login, such as navigating to a different screen
       } else {
         console.log(`Login failed: ${data.message}`);
@@ -60,6 +62,7 @@ export default function LoginScreen() {
       const data = await response.json();
       if (response.ok) {
         console.log("Registration successful!");
+        AsyncStorage.setItem("email", email);
         setIsLoginForm(true); // Toggle to login form
       } else {
         console.log(`Registration failed: ${data.message}`);

@@ -26,7 +26,29 @@ const BookAppointment = () => {
     setShowDatePicker(!showDatePicker);
   };
 
-  const handleAppointment = () => {};
+  const handleAppointment = async (doctor, date) => {
+    // const appointmentData = {
+    //   doctor: doctor._id,
+    //   patient: req.session.userId, // assuming you have a user object available
+    //   date: date,
+    //   price: doctor.price, // replace with actual price value
+    // };
+    // try {
+    //   const response = await fetch("http://localhost:9000/appointments", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(appointmentData),
+    //   });
+    //   const data = await response.json();
+    //   console.log("Appointment created:", data.appointment);
+    //   // navigate to confirmation screen or do any other necessary actions
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    // navigation.navigate("ConfirmationScreen", doctor, date);
+  };
 
   return (
     <ScrollView showsVerticalScrollIndicator={true}>
