@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: "90%",
-    marginBottom: 20,
+    marginBottom: 50,
     backgroundColor: "#FBF9F9",
     borderRadius: 10,
     shadowOpacity: 0.3,

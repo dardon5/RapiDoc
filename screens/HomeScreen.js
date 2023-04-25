@@ -18,16 +18,12 @@ const HomeScreen = () => {
           let iconName;
 
           if (route.name === "SearchScreen") {
-            // updated from "Search"
             iconName = focused ? "ios-search" : "ios-search-outline";
           } else if (route.name === "WellnessScreen") {
-            // updated from "Wellness"
             iconName = focused ? "ios-pulse" : "ios-pulse-outline";
           } else if (route.name === "SymptomsScreen") {
-            // updated from "Symptoms"
             iconName = focused ? "ios-warning" : "ios-warning-outline";
           } else if (route.name === "AppointmentsScreen") {
-            // updated from "Appointments"
             iconName = focused ? "ios-calendar" : "ios-calendar-outline";
           } else if (route.name === "Account") {
             iconName = focused ? "ios-person" : "ios-person-outline";

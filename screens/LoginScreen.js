@@ -133,7 +133,7 @@ export default function LoginScreen() {
       <View style={styles.inputContainer}>
         <View style={styles.inputBox}>
           <View style={styles.profilePictureContainer}>
-            <FontAwesome firstName="user-circle-o" size={100} color="#ccc" />
+            <FontAwesome name="user-circle-o" size={100} color="#ccc" />
           </View>
           <TextInput
             style={styles.input}
@@ -150,11 +150,11 @@ export default function LoginScreen() {
             onChangeText={setPassword}
             autoCapitalize="none"
           />
-          <TouchableOpacity style={styles.button} onPress={toggleForm}>
-            <Text style={styles.buttonText}>Create an account</Text>
-          </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={handleLogin}>
             <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={toggleForm}>
+            <Text style={styles.buttonText}>Create an account</Text>
           </TouchableOpacity>
         </View>
       </View>

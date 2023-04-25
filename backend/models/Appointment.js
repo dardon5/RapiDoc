@@ -20,7 +20,7 @@ const AppointmentSchema = new mongoose.Schema(
     },
     duration: {
       type: Number,
-      required: true,
+      required: false,
     },
     price: {
       type: Number,

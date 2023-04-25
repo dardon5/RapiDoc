@@ -8,6 +8,7 @@ import SearchScreen from "../screens/SearchScreen.js";
 import AppointmentsScreen from "../screens/AppointmentsScreen.js";
 import SymptomsScreen from "../screens/SymptomsScreen.js";
 import WellnessScreen from "../screens/WellnessScreen.js";
+import BookAppointment from "../screens/BookAppointment.js";
 
 const Stack = createStackNavigator();
 
@@ -32,7 +33,11 @@ const AppNavigator = () => {
           component={SearchScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="SearchResults" component={SearchResults} />
+        <Stack.Screen
+          name="SearchResults"
+          component={SearchResults}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="AppointmentsScreen"
           component={AppointmentsScreen}
@@ -46,6 +51,11 @@ const AppNavigator = () => {
         <Stack.Screen
           name="WellnessScreen"
           component={WellnessScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="BookAppointment"
+          component={BookAppointment}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
