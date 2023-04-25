@@ -3,22 +3,31 @@ import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { Picker } from "@react-native-picker/picker";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const BookAppointment = () => {
   const navigation = useNavigation();
   const { params } = useRoute();
   const data = params;
   const doctor = data.doctor;
+  const minDate = new Date();
 
   const [date, setDate] = useState(null);
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
-  const handleDateChange = (itemValue) => {
-    setDate(itemValue);
+  const handleDateChange = (newDate) => {
+    setDate(newDate);
+    console.log(newDate);
+    setShowDatePicker(false);
   };
 
-  //   console.log(data.doctor);
+  const toggleDatePicker = () => {
+    setShowDatePicker(!showDatePicker);
+  };
+
+  const handleAppointment = () => {};
+
   return (
     <ScrollView showsVerticalScrollIndicator={true}>
       <View style={styles.container}>
@@ -55,11 +64,29 @@ const BookAppointment = () => {
             <Text style={styles.price}>
               <Text style={styles.detailHeader}>Price: </Text>${doctor.price}
             </Text>
+            <View style={styles.fieldsContainer}>
+              <Text style={styles.fieldsText}>Select a date and time: </Text>
+              <FontAwesome
+                name="clock-o"
+                size={80}
+                color="#ccc"
+                onPress={() => {
+                  toggleDatePicker();
+                }}
+              />
+              <DateTimePickerModal
+                isVisible={showDatePicker}
+                mode="datetime"
+                onConfirm={handleDateChange}
+                onCancel={toggleDatePicker}
+                minimumDate={minDate}
+              />
+            </View>
           </View>
           <TouchableOpacity
             style={styles.buttonContianer}
             onPress={() => {
-              handleAppointment(doctor);
+              handleAppointment(doctor, date);
             }}
           >
             <Text style={styles.buttonText}>Confirm Appointment</Text>
@@ -140,6 +167,15 @@ const styles = StyleSheet.create({
   price: {
     marginBottom: 20,
     fontSize: 17,
+  },
+  fieldsContainer: {
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  fieldsText: {
+    fontSize: 17,
+    fontWeight: "bold",
+    marginBottom: 25,
   },
   buttonContianer: {
     borderRadius: 12,

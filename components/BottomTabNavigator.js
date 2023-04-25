@@ -9,6 +9,7 @@ import AppointmentsScreen from "../screens/AppointmentsScreen.js";
 import SymptomsScreen from "../screens/SymptomsScreen.js";
 import WellnessScreen from "../screens/WellnessScreen.js";
 import BookAppointment from "../screens/BookAppointment.js";
+import ConfirmationScreen from "../screens/ConfirmationScreen.js";
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,11 @@ const AppNavigator = () => {
           name="BookAppointment"
           component={BookAppointment}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ConfirmationScreen"
+          component={ConfirmationScreen}
+          // options={{ headerShown: false }}
         />
       </Stack.Navigator>
     );
