@@ -2,12 +2,12 @@ import Appointment from "../models/Appointment.js";
 
 export const createAppointment = async (req, res, next) => {
   try {
-    const { doctor, user, date, time } = req.body;
+    const { doctor, patient, date, price } = req.body;
     const appointment = await Appointment.create({
       doctor,
-      user,
+      patient,
       date,
-      time,
+      price,
     });
     res.status(201).json({ appointment });
   } catch (error) {

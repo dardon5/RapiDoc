@@ -10,6 +10,7 @@ import AppointmentsScreen from "../screens/AppointmentsScreen.js";
 import SearchResults from "../screens/SearchResults.js";
 
 const Tab = createBottomTabNavigator();
+
 const HomeScreen = () => {
   return (
     <Tab.Navigator

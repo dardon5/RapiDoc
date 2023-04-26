@@ -18,7 +18,6 @@ const BookAppointment = () => {
 
   const handleDateChange = (newDate) => {
     setDate(newDate);
-    console.log(newDate);
     setShowDatePicker(false);
   };
 
@@ -27,27 +26,41 @@ const BookAppointment = () => {
   };
 
   const handleAppointment = async (doctor, date) => {
-    // const appointmentData = {
-    //   doctor: doctor._id,
-    //   patient: req.session.userId, // assuming you have a user object available
-    //   date: date,
-    //   price: doctor.price, // replace with actual price value
-    // };
-    // try {
-    //   const response = await fetch("http://localhost:9000/appointments", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(appointmentData),
-    //   });
-    //   const data = await response.json();
-    //   console.log("Appointment created:", data.appointment);
-    //   // navigate to confirmation screen or do any other necessary actions
-    // } catch (error) {
-    //   console.error(error);
-    // }
-    // navigation.navigate("ConfirmationScreen", doctor, date);
+    let userId = 0;
+    try {
+      const response = await fetch("http://localhost:9000/api/user");
+      const data = await response.json();
+      if (data.success) {
+        userId = data.userId;
+        const appointmentData = {
+          doctor: doctor._id,
+          patient: userId,
+          date: date,
+          price: doctor.price,
+        };
+        try {
+          const response = await fetch(
+            "http://localhost:9000/api/appointment",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(appointmentData),
+            }
+          );
+          const data = await response.json();
+          console.log("Appointment created:", data.appointment);
+          navigation.navigate("ConfirmationScreen", doctor, date);
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        console.log("User not authenticated");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
