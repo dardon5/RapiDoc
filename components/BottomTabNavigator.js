@@ -62,7 +62,7 @@ const AppNavigator = () => {
         <Stack.Screen
           name="ConfirmationScreen"
           component={ConfirmationScreen}
-          // options={{ headerShown: false }}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     );

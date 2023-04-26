@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import AuthRoute from "./routes/User.js";
 import DoctorRoute from "./routes/Doctor.js";
+import UserRoute from "./routes/User.js";
 import AppointmentRoute from "./routes/Appointment.js";
 import session from "express-session";
 
@@ -60,6 +61,7 @@ app.get("/api/user", (req, res, next) => {
 });
 
 app.use("/api/authentication", AuthRoute);
+app.use("/api/user", UserRoute);
 app.use("/api/appointment", AppointmentRoute);
 app.use("/api/doctor", DoctorRoute);
 

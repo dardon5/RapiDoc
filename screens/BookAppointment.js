@@ -53,7 +53,7 @@ const BookAppointment = () => {
             }
           );
           const data = await response.json();
-          console.log("Appointment created:", data.appointment);
+          console.log("Appointment created");
 
           const doctorResponse = await fetch(
             `http://localhost:9000/api/doctor/${doctorId}`,
@@ -70,7 +70,25 @@ const BookAppointment = () => {
             }
           );
           const doctorData = await doctorResponse.json();
-          console.log("Doctor updated:", doctorData);
+          console.log("Doctor updated");
+
+          // Update the user/patient
+          const userResponse = await fetch(
+            `http://localhost:9000/api/user/${userId}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                $push: {
+                  appointments: data.appointment._id,
+                },
+              }),
+            }
+          );
+          const userData = await userResponse.json();
+          console.log("User updated");
 
           // navigation.navigate("ConfirmationScreen", doctor, date);
         } catch (error) {
@@ -87,6 +105,7 @@ const BookAppointment = () => {
     } catch (error) {
       console.error(error);
     }
+    navigation.navigate("ConfirmationScreen", { doctor, date });
   };
 
   return (
