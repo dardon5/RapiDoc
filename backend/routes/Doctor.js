@@ -13,7 +13,7 @@ router.get("/", getDoctors);
 //CREATE
 router.post("/", createDoctor);
 //UPDATE
-router.patch("/:id", updateDoctor);
+router.put("/:id", updateDoctor);
 //DELETE
 router.delete("/:id", deleteDoctor);
 

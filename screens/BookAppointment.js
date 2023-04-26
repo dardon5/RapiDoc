@@ -5,6 +5,7 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const BookAppointment = () => {
   const navigation = useNavigation();
@@ -27,11 +28,13 @@ const BookAppointment = () => {
 
   const handleAppointment = async (doctor, date) => {
     let userId = 0;
+    let doctorId = doctor._id;
     try {
       const response = await fetch("http://localhost:9000/api/user");
       const data = await response.json();
       if (data.success) {
         userId = data.userId;
+        AsyncStorage.setItem("userId", userId);
         const appointmentData = {
           doctor: doctor._id,
           patient: userId,
@@ -51,10 +54,33 @@ const BookAppointment = () => {
           );
           const data = await response.json();
           console.log("Appointment created:", data.appointment);
-          navigation.navigate("ConfirmationScreen", doctor, date);
+
+          const doctorResponse = await fetch(
+            `http://localhost:9000/api/doctor/${doctorId}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                $push: {
+                  appointments: data.appointment._id,
+                },
+              }),
+            }
+          );
+          const doctorData = await doctorResponse.json();
+          console.log("Doctor updated:", doctorData);
+
+          // navigation.navigate("ConfirmationScreen", doctor, date);
         } catch (error) {
           console.error(error);
         }
+        // try {
+
+        // } catch (error) {
+        //   console.log(error);
+        // }
       } else {
         console.log("User not authenticated");
       }
