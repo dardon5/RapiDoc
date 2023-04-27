@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", getAppointments);
+router.get("/:userId", getAppointments);
 router.post("/", createAppointment);
 router.get("/:id", getAppointment);
 router.put("/:id", updateAppointment);

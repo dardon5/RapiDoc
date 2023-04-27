@@ -12,12 +12,23 @@ const AppointmentsScreen = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:9000/api/appointment"
-        );
-        const { upcomingAppointments, pastAppointments } = response.data;
-        setUpcomingAppointments(upcomingAppointments);
-        setPastAppointments(pastAppointments);
+        const response = await fetch("http://localhost:9000/api/user");
+        const data = await response.json();
+        if (data.success) {
+          const userId = data.userId;
+          console.log(userId);
+          const appointmentsResponse = await axios.get(
+            `http://localhost:9000/api/appointment/${userId}`
+          );
+          const { upcomingAppointments, pastAppointments } =
+            appointmentsResponse.data;
+          setUpcomingAppointments(upcomingAppointments);
+          console.log(upcomingAppointments);
+          setPastAppointments(pastAppointments);
+          console.log(pastAppointments);
+        } else {
+          console.log("no user id for you");
+        }
       } catch (error) {
         console.log(error);
       }
