@@ -1,4 +1,5 @@
 import Appointment from "../models/Appointment.js";
+import User from "../models/User.js";
 
 export const createAppointment = async (req, res, next) => {
   try {
@@ -17,8 +18,23 @@ export const createAppointment = async (req, res, next) => {
 
 export const getAppointments = async (req, res, next) => {
   try {
-    const appointments = await Appointment.find();
-    res.json({ appointments });
+    const userId = req.user.id;
+    const user = await User.findById(userId).populate({
+      path: "appointments",
+      populate: {
+        path: "doctor",
+      },
+    });
+
+    const now = new Date();
+    const upcomingAppointments = user.appointments.filter(
+      (appointment) => appointment.date > now && appointment.doctor
+    );
+    const pastAppointments = user.appointments.filter(
+      (appointment) => appointment.date <= now && appointment.doctor
+    );
+
+    res.json({ upcomingAppointments, pastAppointments });
   } catch (error) {
     next(error);
   }

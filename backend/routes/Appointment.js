@@ -9,12 +9,10 @@ import {
 
 const router = express.Router();
 
-router.route("/").get(getAppointments).post(createAppointment);
-
-router
-  .route("/:id")
-  .get(getAppointment)
-  .put(updateAppointment)
-  .delete(deleteAppointment);
+router.get("/", getAppointments);
+router.post("/", createAppointment);
+router.get("/:id", getAppointment);
+router.put("/:id", updateAppointment);
+router.delete("/:id", deleteAppointment);
 
 export default router;

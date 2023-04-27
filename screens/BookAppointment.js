@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { LogBox } from "react-native";
 
 const BookAppointment = () => {
   const navigation = useNavigation();
@@ -13,6 +14,10 @@ const BookAppointment = () => {
   const data = params;
   const doctor = data.doctor;
   const minDate = new Date();
+
+  LogBox.ignoreLogs([
+    "Non-serializable values were found in the navigation state",
+  ]);
 
   const [date, setDate] = useState(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
