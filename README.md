@@ -2,7 +2,7 @@
 
 ## Description
 
-This application was developed using React native, Express js, Node js, and Mongo DB. The goal of the application is to provide users with the ability to search for medical professionals based on their preferences and needs. The application allows the user to:
+The goal of the application is to provide users with the ability to search for medical professionals based on their preferences and needs. The application allows the user to:
   - Search for medical professionals based on their specialty, price, insurance availibility, and location.
   - Book appointments with these doctors.
   - See current and past appointments.
@@ -23,9 +23,11 @@ This application was developed using React native, Express js, Node js, and Mong
 10. Enjoy!
 
 ## Technologies and Tools Used: 
-- React JS
+- React native
 - SASS
 - Mongo DB
 - Node JS
 - Express JS
 - Postman
+
+The application is still under development as of August 5th.
