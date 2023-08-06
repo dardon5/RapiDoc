@@ -9,8 +9,6 @@ This application was developed using React native, Express js, Node js, and Mong
   - Determine which specialty would be recommended based on their symptoms.
   - Check to see their overall health standing. 
 
-
-
 ## Installation
 
 1. Download the code from this repository and extract the files.
@@ -23,3 +21,11 @@ This application was developed using React native, Express js, Node js, and Mong
 8. Open the application in your simulator of choice or connect a device of your preference. 
 9. Create an account.
 10. Enjoy!
+
+##Technologies and Tools Used: 
+- React JS
+- SASS
+- Mongo DB
+- Node JS
+- Express JS
+- Postman
