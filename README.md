@@ -22,7 +22,7 @@ This application was developed using React native, Express js, Node js, and Mong
 9. Create an account.
 10. Enjoy!
 
-##Technologies and Tools Used: 
+## Technologies and Tools Used: 
 - React JS
 - SASS
 - Mongo DB
